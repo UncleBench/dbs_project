@@ -23,9 +23,12 @@ Wenn man eine SQL-Datenbank in Neo4J importieren will, muss man zuerst alle Tabe
 ```
 LOAD CSV FROM 'file:/assistenten.csv' AS assistenten CREATE (:Assistenten { PersNr: assistenten[0], Name: assistenten[1], Fachgebiet: assistenten[2], Boss: assistenten[3] })
 LOAD CSV FROM 'file:/hoeren.csv' AS hoeren CREATE (:Hoeren { Legi: hoeren[0], VorlNr: hoeren[1] })
-LOAD CSV FROM 'file:/studenten.csv' AS studenten CREATE (:Studenten { MatrNr: studenten[0], Name: studenten[1], Semester: studenten[2]})
 LOAD CSV FROM 'file:/professoren.csv' AS professoren CREATE (:Professoren { PersNr: professoren[0], Name: professoren[1], Rang: 
 professoren[2], Raum: professoren[3] })
+LOAD CSV FROM 'file:/pruefen.csv AS pruefen CREATE (:Pruefen { Legi: pruefen[0], Nr: pruefen[1], PersNr: pruefen[2], Note: pruefen[3]})
+LOAD CSV FROM 'file:/studenten.csv' AS studenten CREATE (:Studenten { MatrNr: studenten[0], Name: studenten[1], Semester: studenten[2]})
+LOAD CSV FROM 'file:/voraussetzen.csv' AS voraussetzen CREATE (:Voraussetzen { Vorgaenger: voraussetzen[0], Nachfolger: voraussetzen[1]})
+LOAD CSV FROM 'file:/vorlesungen.csv' AS vorlesungen CREATE (:Vorlesungen { VorlNr: vorlesungen[0], Titel: vorlesungen[1], KP: vorlesungen[2], GelesenVon: vorlesungen[3]})
 ```
 Importieren. Wichtig ist zu beachten, dass Neo4J über einen eigenen Import-Folder verfügt und durch file:/ automatisch dort nach der Datei sucht. Weiterhin muss man beim Importieren auch noch alle Informationen bezüglich der Benennung der Spalten der jeweiligen Tabelle angeben.
 Beziehungen stellt man in Neo4J mit dem folgenden Cypher-Befehl her:
