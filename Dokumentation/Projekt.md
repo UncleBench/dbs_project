@@ -56,10 +56,12 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 ## 5 Konsistenzsicherung
 ### 5.1	Wie wird die Datensicherheit gewährleistet?
 
+
 ### 5.2	Wie können Transaktionen parallel / konkurrierend verarbeitet werden?
 
 ## 6	Systemarchitektur
 ### 6.1	Wie ist der Server aufgebaut und wie wurde er installiert?
+Auf der offiziellen Website von Neo4j kann man nach der Registrierung die Desktopversion herunterladen und installieren. In dieser Anwendung können verschiedenste Projekte mit der jeweils gewünschten Anzahl Datenbanken verwaltet werden. Möchte man nun mit einer Datenbank arbeiten, wird ein Neo4j Browswe geöffnet.
 
 ### 6.2	Wie kann die Effizienz von Datenanfragen optimiert werden?
 
