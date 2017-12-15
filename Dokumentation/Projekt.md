@@ -1,4 +1,4 @@
-# NEO4J - Übungsprojekt: noSQL
+# NEO4J - Übungsprojekt: noSQL waaaruuummmm???
 BÖDSINN!!!!!
 ## 1	Einführung
 ### 1.1	Was ist der Kontext, warum ist das Projekt relevant, und worum geht es?
