@@ -1,8 +1,7 @@
 # NEO4J - Übungsprojekt: noSQL
 ## 1	Einführung
 ### 1.1	Was ist der Kontext, warum ist das Projekt relevant, und worum geht es?
-Dieses Projekt wurde im Kontext des Moduls Datenbanksysteme HS2017 der HSLU durchgeführt. Das Projekt soll das während dem Semester in den Theorieblöcken und mithilfe der Übungsaufgaben angeeignete Wissen durch die Auseinandersetzung mit einer noSQL Technologie und ihren Aspekten vertiefen. Dies soll erreicht werden, indem eine bereits bestehende relationale Datenbank inklusive ihrer Beziehungen komplett in ein anderes Datenbankmanagementsystem migriert wird. 
-Eine vorgegebene SQL-Abfrage soll so in die Sprache des neuen noSQL DBMS (in diesem Fall Cypher) umgeschrieben werden, dass dieselben Datensätze ausgegeben werden.
+Dieses Projekt wurde im Kontext des Moduls Datenbanksysteme durchgeführt. Die Relevanz des Projekts drückt sich dadurch aus, dass, neben dem theoretischen Input und praktischer Anwendung des erlernten Wissen in wöchentlichen Übungsaufgaben, das gesamte Wissen in einem Projekt umgesetzt werden kann. Es soll eine bereits bestehende Datenbank inklusive ihrer Beziehungen komplett zu einem anderen Datenbankmanagementsystem migriert werden. Dazu soll eine SQL Query in der Programmiersprache des neuen DBMS (in unserem Falle wäre dies Cypher) umgeschrieben werden, um die gewünschten Datensätze auszugeben. Die Studierenden müssen sich also mit einem komplett neuen Datenbanksystem auseinandersetzen sowie praktische Aufgaben in einer neuen Umgebung bewältigen. Demnach ist dieses Projekt relevant, da die Studierenden sich nicht nur mit konzeptionellen Aufgaben auseinandersetzen, sondern sich ebenfalls mit einer anderen Technologie und ihren Aspekten beschäftigen sollen.
 
 ## 2	Datenmanagement
 ### 2.1	Um welche Datenbanktechnologie handelt es sich?
@@ -65,6 +64,7 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 Auf der offiziellen Website von Neo4j kann man nach der Registrierung die Desktopversion herunterladen und installieren. In dieser Anwendung können verschiedenste Projekte mit der jeweils gewünschten Anzahl Datenbanken verwaltet werden. Möchte man nun mit einer Datenbank arbeiten, wird ein Neo4j Browser geöffnet.
 
 ### 6.2	Wie kann die Effizienz von Datenanfragen optimiert werden?
+Die Datenabfrage ist in Graphdatenbanken im Vergleich zu den realationalen Datenbank schon stark optimiert. Durch dass, das man in der Graphdatenbank direkt über Beziehungspfade (
 
 ## 7	Vergleich mit relationalen Datenbanken
 ### 7.1	Vergleichen Sie ihre NoSQL-Technologie mit SQL-Datenbanken.
