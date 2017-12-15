@@ -1,6 +1,7 @@
 # NEO4J - Übungsprojekt: noSQL
 ## 1	Einführung
 ### 1.1	Was ist der Kontext, warum ist das Projekt relevant, und worum geht es?
+Dieses Projekt wurde im Kontext des Moduls Datenbanksysteme durchgeführt. Die Relevanz des Projekts drückt sich dadurch aus, dass, neben dem theoretischen Input und praktischer Anwendung des erlernten Wissen in wöchentlichen Übungsaufgaben, das gesamte Wissen in einem Projekt umgesetzt werden kann. Es soll eine bereits bestehende Datenbank inklusive ihrer Beziehungen komplett zu einem anderen Datenbankmanagementsystem migriert werden. Dazu soll eine SQL Query in der Programmiersprache des neuen DBMS (in unserem Falle wäre dies Cypher) umgeschrieben werden, um die gewünschten Datensätze auszugeben. Die Studierenden müssen sich also mit einem komplett neuen Datenbanksystem auseinandersetzen sowie praktische Aufgaben in einer neuen Umgebung bewältigen. Demnach ist dieses Projekt relevant, da die Studierenden sich nicht nur mit konzeptionellen Aufgaben auseinandersetzen, sondern sich ebenfalls mit einer anderen Technologie und ihren Aspekten beschäftigen sollen.
 
 ## 2	Datenmanagement
 ### 2.1	Um welche Datenbanktechnologie handelt es sich?
