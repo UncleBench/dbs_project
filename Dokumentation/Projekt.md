@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
-# NEO4J - Übungsprojekt: noSQL waaaruuummmm???
-BÖDSINN!!!!!
-=======
 # NEO4J - Übungsprojekt: noSQL
->>>>>>> Stashed changes
 ## 1	Einführung
 ### 1.1	Was ist der Kontext, warum ist das Projekt relevant, und worum geht es?
 Dieses Projekt wurde im Kontext des Moduls Datenbanksysteme HS2017 der HSLU durchgeführt. Das Projekt soll das während dem Semester in den Theorieblöcken und mithilfe der Übungsaufgaben angeeignete Wissen durch die Auseinandersetzung mit einer noSQL Technologie und ihren Aspekten vertiefen. Dies soll erreicht werden, indem eine bereits bestehende relationale Datenbank inklusive ihrer Beziehungen komplett in ein anderes Datenbankmanagementsystem migriert wird. Eine vorgegebene SQL-Abfrage soll so in die Sprache des neuen noSQL DBMS (in diesem Fall Cypher) umgeschrieben werden, dass dieselben Datensätze ausgegeben werden.
