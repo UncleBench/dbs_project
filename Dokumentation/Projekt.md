@@ -36,7 +36,7 @@ Beziehungen stellt man in Neo4J mit den folgenden Cypher-Befehlen her:
 ```
 MATCH (a:Assistenten), (p:Professoren) WHERE a.Boss = p.PersNr CREATE (a)-[:Ist_angestellt_von]->(p)
 MATCH (p:Professoren), (v:Vorlesungen) WHERE p.PersNr = v.GelesenVon CREATE (p)-[:Liest]->(v)
-MATCH (v1:Vorlesungen), (v2:Vorlesungen), (v3:Voraussetzen) WHERE v1.VorlNr=v3.Vorgänger AND v2.VorlNr=v3.Nachfolger CREATE (v1)-[:Ist_Vorgänger_Von]->(v2)
+MATCH (v1:Vorlesungen), (v2:Vorlesungen), (v3:Voraussetzen) WHERE v1.VorlNr=v3.Vorgaenger AND v2.VorlNr=v3.Nachfolger CREATE (v1)-[:Ist_Vorgaenger_Von]->(v2)
 ```
 Dies stellt bei allen Assistenten und Professoren eine Beziehung mit dem Namen „Ist angestellt von“ her, bei denen der Boss von a (Assistenten) gleich der PersNr von p (Professoren) ist.
 
