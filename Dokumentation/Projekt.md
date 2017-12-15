@@ -41,7 +41,7 @@ MATCH (v1:Vorlesungen), (v2:Vorlesungen), (v3:Voraussetzen) WHERE v1.VorlNr=v3.V
 Dies stellt bei allen Assistenten und Professoren eine Beziehung mit dem Namen „Ist angestellt von“ her, bei denen der Boss von a (Assistenten) gleich der PersNr von p (Professoren) ist.
 
 ### 2.4	Wie interagiert der Benutzer mit der Datenbank?
-Als Benutzer nutzt man die Abfragesprache Cypher.
+Als Benutzer nutzt man die Abfragesprache Cypher. Cipher ist der SQL-Sprache sehr ähnlich und dadurch leicht zu verstehen. 
 
 ## 3	Datenmodellierung
 ### 3.1	Welches Datenmodell (ER) liegt ihrem Projekt zugrunde?
