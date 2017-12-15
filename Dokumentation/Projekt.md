@@ -52,6 +52,7 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 
 ## 4	Datenbanksprachen
 ### 4.1	Wie werden Daten anhand einer Query abgefragt?
+[Queries in Neo4j](https://neo4j.com/developer/cypher-query-language/)
 
 ## 5 Konsistenzsicherung
 ### 5.1	Wie wird die Datensicherheit gewährleistet?
