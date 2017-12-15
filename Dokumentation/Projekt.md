@@ -5,6 +5,7 @@ BÖDSINN!!!!!
 Dieses Projekt wurde im Kontext des Moduls Datenbanksysteme HS2017 der HSLU durchgeführt. Das Projekt soll das während dem Semester in den Theorieblöcken und mithilfe der Übungsaufgaben angeeignete Wissen durch die Auseinandersetzung mit einer noSQL Technologie und ihren Aspekten vertiefen. Dies soll erreicht werden, indem eine bereits bestehende relationale Datenbank inklusive ihrer Beziehungen komplett in ein anderes Datenbankmanagementsystem migriert wird. Eine vorgegebene SQL-Abfrage soll so in die Sprache des neuen noSQL DBMS (in diesem Fall Cypher) umgeschrieben werden, dass dieselben Datensätze ausgegeben werden.
 
 ## 2	Datenmanagement
+Mega gschiid!
 ### 2.1	Um welche Datenbanktechnologie handelt es sich?
 Wir benutzen für dieses Projekt die Datenbank Neo4j. Diese ist eine Open-Source-Graphdatenbank, welche mit Java implementiert wurde. Sie erschien 2007 und ist im Vergleich mit anderen Datenbanken auf dem Platz 21 und die beste Graphdatenbank (www.db-engines.com; Stand: 06.12.2017).
 
@@ -77,6 +78,6 @@ Neo4j kann viel besser mit einer grossen Menge an Daten und vielen Beziehungen z
 
 ### 8.2	Wie beurteilt ihre Gruppe die gewählte Datenbanktechnologie, und was sind Vor- und Nachteile?
 
-#### 8.2.1 Vorteile
+#### 8.2.1 Vorteile
 
 #### 8.2.2 Nachteile
