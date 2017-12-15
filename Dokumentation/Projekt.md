@@ -65,9 +65,8 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 Auf der offiziellen Website von Neo4j kann man nach der Registrierung die Desktopversion herunterladen und installieren. In dieser Anwendung können verschiedenste Projekte mit der jeweils gewünschten Anzahl Datenbanken verwaltet werden. Möchte man nun mit einer Datenbank arbeiten, wird ein Neo4j Browser geöffnet.
 
 ### 6.2	Wie kann die Effizienz von Datenanfragen optimiert werden?
-Die Datenabfrage ist in Graphdatenbanken im Vergleich zu den realationalen Datenbank schon stark optimiert. Um durch eine Graphdatenbank zu traversieren, reicht es aus, vom Startknoten über die Beziehungskanten (Pfade). 
-Durch dass, das man in der Graphdatenbank direkt über Beziehungskanten (Pfade) von Knoten zu Knoten kommt
-
+Die Datenabfrage ist in Graphdatenbanken im Vergleich zu den realationalen Datenbank schon stark optimiert. Um durch eine Graphdatenbank zu traversieren, reicht es aus, die Beziehungskanten (Pfade) des Startknoten zu verfolgen. Dies ist viel schneller als über Joins Beziehungen zu finden.
+ 
 ## 7	Vergleich mit relationalen Datenbanken
 ### 7.1	Vergleichen Sie ihre NoSQL-Technologie mit SQL-Datenbanken.
 Neo4j kann viel besser mit einer grossen Menge an Daten und vielen Beziehungen zwischen den Daten umgehen und somit leistet sie eine bessere Performance als relationale Datenbanken.
