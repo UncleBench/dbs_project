@@ -52,7 +52,7 @@ Wir nutzen die schon vorliegende Uni-Datenbank. Das SQL-Datenmodell sieht folgen
 
 ### 3.2	Wie wird ihr Datenmodell in Ihrer Datenbank in ein Schema übersetzt?
 Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu einander dargestellt.
-![NoSQL](./NoSQL/NoSQLSchema.png)
+![NoSQL](./img/NoSQLSchema.png)
 
 ## 4	Datenbanksprachen
 ### 4.1	Wie werden Daten anhand einer Query abgefragt?
@@ -62,17 +62,21 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 ### 5.1	Wie wird die Datensicherheit gewährleistet?
 
 ### 5.2	Wie können Transaktionen parallel / konkurrierend verarbeitet werden?
+In Neo4j laufen alle Updates des Graphen in einer Transaktion ab. Dies kann auf zwei Arten geschehen. Falls noch keine Transaktion existiert, erstellt Cypher eine Neue und arbeitet den Query ab. Läuft jedoch schon eine Transaktion, wird der neue Query in der alten Transaktion mit abgearbeitet. Erst wenn alle Queries erfolgreich abgeschlossen wurden, werden die Änderung abgespeichert. Dies bedeutet, dass mehrere Queries in nur einer Transaktion auf einmal ausgeführt/abgespeichert werden können.
 
 ## 6	Systemarchitektur
 ### 6.1	Wie ist der Server aufgebaut und wie wurde er installiert?
 Auf der offiziellen Website von Neo4j kann man nach der Registrierung die Desktopversion herunterladen und installieren. In dieser Anwendung können verschiedenste Projekte mit der jeweils gewünschten Anzahl Datenbanken verwaltet werden. Möchte man nun mit einer Datenbank arbeiten, wird ein Neo4j Browser geöffnet in dem die Anweisungen und Abfragen gegeben werden können.
 
 ### 6.2	Wie kann die Effizienz von Datenanfragen optimiert werden?
-Die Datenabfrage ist in Graphdatenbanken im Vergleich zu den realationalen Datenbank schon stark optimiert. Um durch eine Graphdatenbank zu traversieren, reicht es aus, die Beziehungskanten (Pfade) des Startknoten zu verfolgen. Dies ist viel schneller als die im SQL genutzten Joins.
+In Cypher werden alle Queries durch die Cypher execution engine automatisch optimiert und umgesetzt.
+*Um die Abfrage noch mehr zu optimieren, wird vorgeschlagen keine Umbennenungen durchzuführen.*(To minimize the resources used for this, make sure to use parameters instead of literals when possible. This allows Cypher to re-use your queries instead of having to parse and build new execution plans.)--> Versteh ich nicht ganz / Übersetzung richtig?
+
+https://neo4j.com/docs/developer-manual/current/cypher/query-tuning/
 
 ## 7	Vergleich mit relationalen Datenbanken
 ### 7.1	Vergleichen Sie ihre NoSQL-Technologie mit SQL-Datenbanken.
-Neo4j kann viel besser mit einer grossen Menge an Daten und vielen Beziehungen zwischen den Daten umgehen und somit leistet sie eine bessere Performance als relationale Datenbanken.
+Die Datenabfrage ist in Graphdatenbanken im Vergleich zu den realationalen Datenbank stark optimiert. Um durch eine Graphdatenbank zu traversieren, reicht es aus, die Beziehungskanten (Pfade) des Startknoten zu verfolgen. Dies ist viel schneller als die im SQL genutzten Joins. Zusätzlich kann Neo4j auch besser mit einer grossen Menge an Daten und Beziehungen umgehen. Durch all diese Faktoren leistet diese Datenbanktechnologie eine bessere Performance (vorallem bei grossen Datenmengen).
 
 ## 8	Schlussfolgerungen
 ### 8.1	Was haben Sie erreicht, und welche Erkenntnisse haben sie dabei gewonnen?
