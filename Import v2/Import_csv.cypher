@@ -1,27 +1,42 @@
+// Assistent erstellen
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:customers.csv" AS row
-CREATE (:Customer {companyName: row.CompanyName, customerID: row.CustomerID, fax: row.Fax, phone: row.Phone});
+LOAD CSV WITH HEADERS FROM "file:assistenten.csv" AS row
+CREATE (:Assistent {PersNr: row.persnr, name: row.Name, fachgebiet: row.Fachgebiet});
 
-// Create products
+// Professor erstellen
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:products.csv" AS row
-CREATE (:Product {productName: row.ProductName, productID: row.ProductID, unitPrice: toFloat(row.UnitPrice)});
+LOAD CSV WITH HEADERS FROM "file:professoren.csv" AS row
+CREATE (:Professor {PersNr: row.persnr, Name: row.name, Rang: row.rang, Raum: row.raum});
 
-// Create suppliers
+// Student erstellen
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:suppliers.csv" AS row
-CREATE (:Supplier {companyName: row.CompanyName, supplierID: row.SupplierID});
+LOAD CSV WITH HEADERS FROM "file:studenten.csv" AS row
+CREATE (:Student {MatrNr: row.matrnr, Name: row.name, Semester: row.semester});
 
-// Create employees
+// Vorlesung erstellen
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:employees.csv" AS row
-CREATE (:Employee {employeeID:row.EmployeeID,  firstName: row.FirstName, lastName: row.LastName, title: row.Title});
+LOAD CSV WITH HEADERS FROM "file:vorlesungen.csv" AS row
+CREATE (:Vorlesung {VorlNr: row.vorlnr, Titel: row.titel, SWS: row.sws});
 
-// Create categories
+// Prüfung erstellen
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:categories.csv" AS row
-CREATE (:Category {categoryID: row.CategoryID, categoryName: row.CategoryName, description: row.Description});
-
-USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:orders.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:pruefen.csv" AS row
+CREATE (:Pruefung {Note: row.note});
+// ************* Hier weitermachen *************************************************************************
 MERGE (order:Order {orderID: row.OrderID}) ON CREATE SET order.shipName =  row.ShipName;
+
+// Indizes erstellen
+CREATE INDEX ON :Assistent(PersNr);
+CREATE INDEX ON :Professor(PersNr);
+CREATE INDEX ON :Student(MatrNr);
+CREATE INDEX ON :Vorlesung(VorlNr);
+
+CREATE CONSTRAINT ON (o:Order) ASSERT o.orderID IS UNIQUE;
+schema await
+
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:pruefen.csv" AS row
+MATCH (matrnr:Student {orderID: row.matrnr})
+MATCH (vorlnr:Product {productID: row.ProductID})
+MERGE (order)-[pu:PRODUCT]->(product)
+ON CREATE SET pu.unitPrice = toFloat(row.UnitPrice), pu.quantity = toFloat(row.Quantity);
