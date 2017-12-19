@@ -27,7 +27,7 @@ LOAD CSV FROM 'file:/hoeren.csv' AS hoeren CREATE (:Hoeren { Legi: hoeren[0], Vo
 LOAD CSV FROM 'file:/professoren.csv' AS professoren CREATE (:Professoren { PersNr: professoren[0], Name: professoren[1], Rang:
 professoren[2], Raum: professoren[3] })
 LOAD CSV FROM 'file:/pruefen.csv' AS pruefen CREATE (:Pruefen { Legi: pruefen[0], Nr: pruefen[1], PersNr: pruefen[2], Note: pruefen[3]})
-LOAD CSV FROM 'file:/studenten.csv' AS studenten CREATE (:Studenten { MatrNr: studenten[0], Name: studenten[1], Semester: studenten[2]})
+LOAD CSV FROM 'file:/studenten.csv' AS studenten CREATE (:Studenten { Legi: studenten[0], Name: studenten[1], Semester: studenten[2]})
 LOAD CSV FROM 'file:/voraussetzen.csv' AS voraussetzen CREATE (:Voraussetzen { Vorgaenger: voraussetzen[0], Nachfolger: voraussetzen[1]})
 LOAD CSV FROM 'file:/vorlesungen.csv' AS vorlesungen CREATE (:Vorlesungen { VorlNr: vorlesungen[0], Titel: vorlesungen[1], KP: vorlesungen[2], GelesenVon: vorlesungen[3]})
 ```
