@@ -8,8 +8,8 @@ Dieses Projekt wurde im Kontext des Moduls Datenbanksysteme HS2017 der HSLU durc
 Wir benutzen für dieses Projekt die Datenbank Neo4j. Diese ist eine Open-Source-Graphdatenbank, welche mit Java implementiert wurde. Sie erschien 2007 und ist im Vergleich mit anderen Datenbanken auf dem Platz 21 und die beste Graphdatenbank (www.db-engines.com; Stand: 06.12.2017).
 
 ### 2.2	Welche Anwendung (Use Case) unterstützt ihre Datenbank?
-Zu den Use Cases der Neo4j-Datenbank (und allgemein von Graphdatenbanken) zählt zum Beispiel Betrugsentdeckung (fraud detection). Dabei müssen Datenbeziehungen in Echtzeit analysiert werden können, um Betrüger frühzeitig erkennen zu können.
-Auch sogenannte Knowledge Graphs können dadurch dargestellt werden. Ein Knowledge Graph kann Antworten auf bestimmte Fragen liefern, indem alle möglichen Daten gesammelt und dazu Beziehungen hergestellt werden.
+Zu den Use Cases der Neo4j-Datenbank (und Allgemein von Graphdatenbanken) zählt zum Beispiel Betrugsentdeckung (fraud detection). Dabei müssen Datenbeziehungen in Echtzeit analysiert werden können, um Betrüger frühzeitig erkennen zu können.
+Auch sogenannte Knowledge Graphs können dadurch dargestellt werden. Ein Knowledge Graph kann Antworten auf bestimmte Fragen liefern, indem alle möglichen Daten gesammelt und dazu Beziehungen hergestellt werden. Dies wird zum Beispiel von Google genutzt.
 Network&IT:
 Real-Time Recommendation Engines:
 Master Data Management:
@@ -20,18 +20,19 @@ https://neo4j.com/use-cases/
 Use cases include matchmaking, network management, software analytics, scientific research, routing, organizational and project management, recommendations, social networks, and more.
 
 ### 2.3	Welche Daten werden migriert / eingefügt, und wie genau?
-Wenn man eine SQL-Datenbank in Neo4J importieren will, muss man zuerst alle Tabellen als CSV-Dateien exportieren. In Neo4J kann man die Dateien dann mit dem Cypher-Befehl:
+Um eine schon bestehende SQL-Datenbank in NEo4j zu migrieren, werden als Erstes alle Tabellen als CSV-Dateien exportiert. Diese Dateien können dann direkt in Neo4j durch den folgenden Cypher-Befehl importieren:
 ```
 LOAD CSV FROM 'file:/assistenten.csv' AS assistenten CREATE (:Assistenten { PersNr: assistenten[0], Name: assistenten[1], Fachgebiet: assistenten[2], Boss: assistenten[3] })
 LOAD CSV FROM 'file:/hoeren.csv' AS hoeren CREATE (:Hoeren { Legi: hoeren[0], VorlNr: hoeren[1] })
 LOAD CSV FROM 'file:/professoren.csv' AS professoren CREATE (:Professoren { PersNr: professoren[0], Name: professoren[1], Rang:
 professoren[2], Raum: professoren[3] })
 LOAD CSV FROM 'file:/pruefen.csv' AS pruefen CREATE (:Pruefen { Legi: pruefen[0], Nr: pruefen[1], PersNr: pruefen[2], Note: pruefen[3]})
-LOAD CSV FROM 'file:/studenten.csv' AS studenten CREATE (:Studenten { MatrNr: studenten[0], Name: studenten[1], Semester: studenten[2]})
+LOAD CSV FROM 'file:/studenten.csv' AS studenten CREATE (:Studenten { Legi: studenten[0], Name: studenten[1], Semester: studenten[2]})
 LOAD CSV FROM 'file:/voraussetzen.csv' AS voraussetzen CREATE (:Voraussetzen { Vorgaenger: voraussetzen[0], Nachfolger: voraussetzen[1]})
 LOAD CSV FROM 'file:/vorlesungen.csv' AS vorlesungen CREATE (:Vorlesungen { VorlNr: vorlesungen[0], Titel: vorlesungen[1], KP: vorlesungen[2], GelesenVon: vorlesungen[3]})
 ```
-Importieren. Wichtig ist zu beachten, dass Neo4J über einen eigenen Import-Folder verfügt und durch file:/ automatisch dort nach der Datei sucht. Weiterhin muss man beim Importieren auch noch alle Informationen bezüglich der Benennung der Spalten der jeweiligen Tabelle angeben.
+Wichtig ist zu beachten, dass Neo4J über einen eigenen Import-Folder verfügt und durch file:/ automatisch dort nach der Datei sucht. Somit sollten die CSV-Dateien an diesem Ort abgelegt werden. Zusätzlich müssen beim Importieren alle Informationen bezüglich der Benennung der Spalten der jeweiligen Tabelle angegeben weden.
+
 Beziehungen stellt man in Neo4J mit den folgenden Cypher-Befehlen her:
 ```
 MATCH (a:Assistenten), (p:Professoren) WHERE a.Boss = p.PersNr CREATE (a)-[:Ist_angestellt_von]->(p)
@@ -42,15 +43,16 @@ MATCH (s:Studenten), (v:Vorlesungen), (h:Hoeren) WHERE s.Legi=h.Legi AND v.VorlN
 Dies stellt bei allen Assistenten und Professoren eine Beziehung mit dem Namen „Ist angestellt von“ her, bei denen der Boss von a (Assistenten) gleich der PersNr von p (Professoren) ist.
 
 ### 2.4	Wie interagiert der Benutzer mit der Datenbank?
-Als Benutzer nutzt man die Abfragesprache Cypher. Cipher ist der SQL-Sprache sehr ähnlich und dadurch leicht zu verstehen.
+Als Benutzer nutzt man die Abfragesprache Cypher. Cipher ist der SQL-Sprache sehr ähnlich und dadurch für Beginner mit SQL-Vorwissen leicht zu verstehen.
 
 ## 3	Datenmodellierung
 ### 3.1	Welches Datenmodell (ER) liegt ihrem Projekt zugrunde?
-Das SQL-Datenmodell sieht folgendermassen aus:
+Wir nutzen die schon vorliegende Uni-Datenbank. Das SQL-Datenmodell sieht folgendermassen aus:
 ![SQL Schema](./img/sql_schema.png)
 
 ### 3.2	Wie wird ihr Datenmodell in Ihrer Datenbank in ein Schema übersetzt?
 Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu einander dargestellt.
+![NoSQL](./img/NoSQLSchema.png)
 
 ## 4	Datenbanksprachen
 ### 4.1	Wie werden Daten anhand einer Query abgefragt?
@@ -60,17 +62,21 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 ### 5.1	Wie wird die Datensicherheit gewährleistet?
 
 ### 5.2	Wie können Transaktionen parallel / konkurrierend verarbeitet werden?
+In Neo4j laufen alle Updates des Graphen in einer Transaktion ab. Dies kann auf zwei Arten geschehen. Falls noch keine Transaktion existiert, erstellt Cypher eine Neue und arbeitet den Query ab. Läuft jedoch schon eine Transaktion, wird der neue Query in der alten Transaktion mit abgearbeitet. Erst wenn alle Queries erfolgreich abgeschlossen wurden, werden die Änderung abgespeichert. Dies bedeutet, dass mehrere Queries in nur einer Transaktion auf einmal ausgeführt/abgespeichert werden können.
 
 ## 6	Systemarchitektur
 ### 6.1	Wie ist der Server aufgebaut und wie wurde er installiert?
-Auf der offiziellen Website von Neo4j kann man nach der Registrierung die Desktopversion herunterladen und installieren. In dieser Anwendung können verschiedenste Projekte mit der jeweils gewünschten Anzahl Datenbanken verwaltet werden. Möchte man nun mit einer Datenbank arbeiten, wird ein Neo4j Browser geöffnet.
+Auf der offiziellen Website von Neo4j kann man nach der Registrierung die Desktopversion herunterladen und installieren. In dieser Anwendung können verschiedenste Projekte mit der jeweils gewünschten Anzahl Datenbanken verwaltet werden. Möchte man nun mit einer Datenbank arbeiten, wird ein Neo4j Browser geöffnet in dem die Anweisungen und Abfragen gegeben werden können.
 
 ### 6.2	Wie kann die Effizienz von Datenanfragen optimiert werden?
-Die Datenabfrage ist in Graphdatenbanken im Vergleich zu den realationalen Datenbank schon stark optimiert. Um durch eine Graphdatenbank zu traversieren, reicht es aus, die Beziehungskanten (Pfade) des Startknoten zu verfolgen. Dies ist viel schneller als über Joins Beziehungen zu finden.
+In Cypher werden alle Queries durch die Cypher execution engine automatisch optimiert und umgesetzt.
+*Um die Abfrage noch mehr zu optimieren, wird vorgeschlagen keine Umbennenungen durchzuführen.*(To minimize the resources used for this, make sure to use parameters instead of literals when possible. This allows Cypher to re-use your queries instead of having to parse and build new execution plans.)--> Versteh ich nicht ganz / Übersetzung richtig?
+
+https://neo4j.com/docs/developer-manual/current/cypher/query-tuning/
 
 ## 7	Vergleich mit relationalen Datenbanken
 ### 7.1	Vergleichen Sie ihre NoSQL-Technologie mit SQL-Datenbanken.
-Neo4j kann viel besser mit einer grossen Menge an Daten und vielen Beziehungen zwischen den Daten umgehen und somit leistet sie eine bessere Performance als relationale Datenbanken.
+Die Datenabfrage ist in Graphdatenbanken im Vergleich zu den realationalen Datenbank stark optimiert. Um durch eine Graphdatenbank zu traversieren, reicht es aus, die Beziehungskanten (Pfade) des Startknoten zu verfolgen. Dies ist viel schneller als die im SQL genutzten Joins. Zusätzlich kann Neo4j auch besser mit einer grossen Menge an Daten und Beziehungen umgehen. Durch all diese Faktoren leistet diese Datenbanktechnologie eine bessere Performance (vorallem bei grossen Datenmengen).
 
 ## 8	Schlussfolgerungen
 ### 8.1	Was haben Sie erreicht, und welche Erkenntnisse haben sie dabei gewonnen?
