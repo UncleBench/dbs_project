@@ -58,6 +58,12 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 ### 4.1	Wie werden Daten anhand einer Query abgefragt?
 [Queries in Neo4j](https://neo4j.com/developer/cypher-query-language/)
 
+SQL-Query:
+![SQL Query](.img/sql_query.png)
+Das SQL-Query gibt alle Professoren aus, welche eine Vorlesung mit Studenten abhalten. Ausgegeben werden die Namen der Professoren mit der Anzahl Studenten, welche die Vorlesungen dieses Professors besuchen. Zusätzlich sieht man die Anzahl Credits (SWS), welche man mit den Vorlesungen holen kann.
+![SQL Resultat](.img/sql_result.png)
+
+
 ## 5 Konsistenzsicherung
 ### 5.1	Wie wird die Datensicherheit gewährleistet?
 
