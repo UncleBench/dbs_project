@@ -59,9 +59,11 @@ Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu ein
 [Queries in Neo4j](https://neo4j.com/developer/cypher-query-language/)
 
 SQL-Query:
-![SQL Query](.img/sql_query.png)
+![SQL Query](.img/sql_query.PNG)
 Das SQL-Query gibt alle Professoren aus, welche eine Vorlesung mit Studenten abhalten. Ausgegeben werden die Namen der Professoren mit der Anzahl Studenten, welche die Vorlesungen dieses Professors besuchen. Zusätzlich sieht man die Anzahl Credits (SWS), welche man mit den Vorlesungen holen kann.
-![SQL Resultat](.img/sql_result.png)
+![SQL Resultat](.img/sql_result.PNG)
+
+Neo4j-Query:
 
 
 ## 5 Konsistenzsicherung
