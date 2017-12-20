@@ -34,35 +34,35 @@ schema await
 
 // Assistent assistiert Professor
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:assistenten.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///assistenten.csv" AS row
 MATCH (assi:Assistent {PersNr: row.persnr})
 MATCH (prof:Professor {PersNr: row.boss})
 MERGE (assi)-[:ASSISTIERT]->(prof)
 
 // Professor liest Vorlesung
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:vorlesungen.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///vorlesungen.csv" AS row
 MATCH (prof:Professor {PersNr: row.gelesenvon})
 MATCH (vorl:Vorlesung {VorlNr: row.vorlnr})
 MERGE (prof)-[:LIEST]->(vorl)
 
 // Student hoert Vorlesung
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:hoeren.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///hoeren.csv" AS row
 MATCH (stud:Student {MatrNr: row.matrnr})
 MATCH (vorl:Vorlesung {VorlNr: row.vorlnr})
 MERGE (stud)-[:HOERT]->(vorl)
 
 // Vorlesung setzt_voraus Vorlesung
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:voraussetzen.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///voraussetzen.csv" AS row
 MATCH (vorgaenger:Vorlesung {MatrNr: row.vorgaenger})
 MATCH (nachfolger:Vorlesung {VorlNr: row.nachfolger})
 MERGE (vorgaenger)-[:SETZT_VORAUS]->(nachfolger)
 
 // Vorlesung folgt_auf Vorlesung
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:voraussetzen.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///voraussetzen.csv" AS row
 MATCH (nachfolger:Vorlesung {VorlNr: row.nachfolger})
 MATCH (vorgaenger:Vorlesung {MatrNr: row.vorgaenger})
 MERGE (nachfolger)-[:FOLGT_AUF]->(vorgaenger)
@@ -71,7 +71,7 @@ MERGE (nachfolger)-[:FOLGT_AUF]->(vorgaenger)
 // Pruefung wird_geschrieben_von Student
 // Pruefung thematisiert Vorlesung
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:pruefen.csv" AS row
+LOAD CSV WITH HEADERS FROM "file:///pruefen.csv" AS row
 MATCH (pruef:Pruefung {Note: row.note})
 MATCH (prof:Professor {PersNr: row.persnr})
 MATCH (stud:Student {MatrNr: row.matrnr})
