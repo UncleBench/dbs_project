@@ -28,7 +28,7 @@ CREATE INDEX ON :Assistent(PersNr);
 CREATE INDEX ON :Professor(PersNr);
 CREATE INDEX ON :Student(MatrNr);
 CREATE INDEX ON :Vorlesung(VorlNr);
-CREATE INDEX ON :Pruefung(Note);
+// index auf prüfung... CREATE INDEX ON :Pruefung(???);
 
 schema await
 
