@@ -72,7 +72,7 @@ MERGE (nachfolger)-[:FOLGT_AUF]->(vorgaenger)
 // Pruefung thematisiert Vorlesung
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:pruefen.csv" AS row
-MATCH (pruef:Pruefung {PruefNr: row.pruefnr})
+MATCH (pruef:Pruefung {Note: row.note})
 MATCH (prof:Professor {PersNr: row.persnr})
 MATCH (stud:Student {MatrNr: row.matrnr})
 MATCH (vorl:Vorlesung {VorlNr: row.vorlnr})
