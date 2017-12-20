@@ -1,34 +1,34 @@
 // Assistent erstellen
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///assistenten.csv" AS row
-CREATE (:Assistent {PersNr: row.persnr, Name: row.name, Fachgebiet: row.fachgebiet})
+CREATE (:Assistent {PersNr: row.persnr, Name: row.name, Fachgebiet: row.fachgebiet});
 
 // Professor erstellen
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///professoren.csv" AS row
-CREATE (:Professor {PersNr: row.persnr, Name: row.name, Rang: row.rang, Raum: row.raum})
+CREATE (:Professor {PersNr: row.persnr, Name: row.name, Rang: row.rang, Raum: row.raum});
 
 // Student erstellen
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///studenten.csv" AS row
-CREATE (:Student {MatrNr: row.matrnr, Name: row.name, Semester: row.semester})
+CREATE (:Student {MatrNr: row.matrnr, Name: row.name, Semester: row.semester});
 
 // Vorlesung erstellen
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///vorlesungen.csv" AS row
-CREATE (:Vorlesung {VorlNr: row.vorlnr, Titel: row.titel, SWS: row.sws})
+CREATE (:Vorlesung {VorlNr: row.vorlnr, Titel: row.titel, SWS: row.sws});
 
 // Prüfung erstellen
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///pruefen.csv" AS row
-CREATE (:Pruefung {Note: row.note})
+CREATE (:Pruefung {Note: row.note});
 
 // Indizes erstellen
-CREATE INDEX ON :Assistent(PersNr)
-CREATE INDEX ON :Professor(PersNr)
-CREATE INDEX ON :Student(MatrNr)
-CREATE INDEX ON :Vorlesung(VorlNr)
-// index auf prüfung... CREATE INDEX ON :Pruefung(???)
+CREATE INDEX ON :Assistent(PersNr);
+CREATE INDEX ON :Professor(PersNr);
+CREATE INDEX ON :Student(MatrNr);
+CREATE INDEX ON :Vorlesung(VorlNr);
+// index auf prüfung... CREATE INDEX ON :Pruefung(???);
 
 schema await
 
