@@ -1,7 +1,7 @@
 // Assistent erstellen
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:assistenten.csv" AS row
-CREATE (:Assistent {PersNr: row.persnr, name: row.Name, fachgebiet: row.Fachgebiet});
+CREATE (:Assistent {PersNr: row.persnr, Name: row.name, Fachgebiet: row.fachgebiet});
 
 // Professor erstellen
 USING PERIODIC COMMIT
