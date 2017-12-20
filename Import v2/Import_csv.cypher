@@ -22,21 +22,26 @@ CREATE (:Vorlesung {VorlNr: row.vorlnr, Titel: row.titel, SWS: row.sws});
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:pruefen.csv" AS row
 CREATE (:Pruefung {Note: row.note});
-// ************* Hier weitermachen *************************************************************************
-MERGE (order:Order {orderID: row.OrderID}) ON CREATE SET order.shipName =  row.ShipName;
 
 // Indizes erstellen
 CREATE INDEX ON :Assistent(PersNr);
 CREATE INDEX ON :Professor(PersNr);
 CREATE INDEX ON :Student(MatrNr);
 CREATE INDEX ON :Vorlesung(VorlNr);
+CREATE INDEX ON :Pruefung(Note);
 
-CREATE CONSTRAINT ON (o:Order) ASSERT o.orderID IS UNIQUE;
 schema await
 
+// Assistent assistiert Professor
 USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:pruefen.csv" AS row
-MATCH (matrnr:Student {orderID: row.matrnr})
-MATCH (vorlnr:Product {productID: row.ProductID})
-MERGE (order)-[pu:PRODUCT]->(product)
-ON CREATE SET pu.unitPrice = toFloat(row.UnitPrice), pu.quantity = toFloat(row.Quantity);
+LOAD CSV WITH HEADERS FROM "file:assistenten.csv" AS row
+MATCH (assi:Assistent {PersNr: row.persnr})
+MATCH (prof:Professor {PersNr: row.boss})
+MERGE (assi)-[:ASSISTIERT]->(prof)
+
+// Professor liest Vorlesung
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM "file:vorlesungen.csv" AS row
+MATCH (prof:Professor {PersNr: row.gelesenvon})
+MATCH (vorl:Vorlesung {VorlNr: row.vorlnr})
+MERGE (prof)-[:LIEST]->(vorl)

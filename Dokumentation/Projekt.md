@@ -64,7 +64,12 @@ Das SQL-Query gibt alle Professoren aus, welche eine Vorlesung mit Studenten abh
 ![SQL Resultat](.img/sql_result.PNG)
 
 Neo4j-Query:
-
+```
+MATCH(v:Vorlesungen) WHERE SIZE((v)-[:Besucht]-())>0 RETURN v.Titel, SIZE((v)-[:Besucht]-())
+MATCH(p:Professoren)-[:Liest]->(v:Vorlesungen) RETURN p.Name, v.Titel, v.KP
+```
+1. Gibt Vorlesungen, welche besucht werden und die Anzahl der Studenten aus.
+2. Gibt den jeweiligen Professor einer Vorlesung aus (nur die die eine halten) und die Credits die man fütr diese bekommt. 
 
 ## 5 Konsistenzsicherung
 ### 5.1	Wie wird die Datensicherheit gewährleistet?
