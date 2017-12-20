@@ -56,7 +56,7 @@ MERGE (stud)-[:HOERT]->(vorl)
 // Vorlesung setzt_voraus Vorlesung
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///voraussetzen.csv" AS row
-MATCH (vorgaenger:Vorlesung {MatrNr: row.vorgaenger})
+MATCH (vorgaenger:Vorlesung {VorlNr: row.vorgaenger})
 MATCH (nachfolger:Vorlesung {VorlNr: row.nachfolger})
 MERGE (vorgaenger)-[:SETZT_VORAUS]->(nachfolger)
 
@@ -64,7 +64,7 @@ MERGE (vorgaenger)-[:SETZT_VORAUS]->(nachfolger)
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///voraussetzen.csv" AS row
 MATCH (nachfolger:Vorlesung {VorlNr: row.nachfolger})
-MATCH (vorgaenger:Vorlesung {MatrNr: row.vorgaenger})
+MATCH (vorgaenger:Vorlesung {VorlNr: row.vorgaenger})
 MERGE (nachfolger)-[:FOLGT_AUF]->(vorgaenger)
 
 // Pruefung wird_durchgefuehrt_von Professor
