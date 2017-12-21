@@ -70,12 +70,10 @@ Das SQL-Query gibt alle Professoren aus, welche eine Vorlesung mit Studenten abh
 
 Neo4j-Query:
 ```
-MATCH(v:Vorlesungen) WHERE SIZE((v)-[:Besucht]-())>0 RETURN v.Titel, SIZE((v)-[:Besucht]-())
-MATCH(p:Professoren)-[:Liest]->(v:Vorlesungen) WHERE p.Name=p.Name RETURN p.Name, sum(toInteger(v.KP))
-
 MATCH(p:Professoren)-[:Liest]->(v:Vorlesungen) 
-WHERE p.Name=p.Name AND SIZE((v)-[:Besucht]-())>0 
-RETURN p.Name AS Professor,SIZE((v)-[:Besucht]-()) AS AnzahlStudenten, sum(toInteger(v.KP)) AS AnzahlSWS
+WHERE p.Name=p.Name
+RETURN p.Name AS Professor,sum(SIZE((v)-[:Besucht]-())) AS AnzahlStudenten, sum(toInteger(v.KP)) AS AnzahlSWS
+ORDER BY p.Name
 ```
 1. Gibt Vorlesungen, welche besucht werden und die Anzahl der Studenten aus.
 2. Gibt den jeweiligen Professor einer Vorlesung aus (nur die die eine halten) und die Credits die man für diese bekommt. 
