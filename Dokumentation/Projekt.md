@@ -48,10 +48,12 @@ Als Benutzer nutzt man die Abfragesprache Cypher. Cipher ist der SQL-Sprache seh
 ## 3	Datenmodellierung
 ### 3.1	Welches Datenmodell (ER) liegt ihrem Projekt zugrunde?
 Wir nutzen die schon vorliegende Uni-Datenbank. Das SQL-Datenmodell sieht folgendermassen aus:
+
 ![SQL Schema](./img/sql_schema.png)
 
 ### 3.2	Wie wird ihr Datenmodell in Ihrer Datenbank in ein Schema übersetzt?
 Bei Neo4j wird das Datenmodell durch Knoten, Kanten und deren Beziehungen zu einander dargestellt.
+
 ![NoSQL](./img/NoSQLSchema.png)
 
 ## 4	Datenbanksprachen
