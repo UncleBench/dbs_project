@@ -52,14 +52,7 @@ USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///voraussetzen.csv" AS row
 MATCH (vorgaenger:Vorlesung {VorlNr: row.vorgaenger})
 MATCH (nachfolger:Vorlesung {VorlNr: row.nachfolger})
-MERGE (vorgaenger)-[:SETZT_VORAUS]->(nachfolger)
-
-// Vorlesung folgt_auf Vorlesung
-USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:///voraussetzen.csv" AS row
-MATCH (nachfolger:Vorlesung {VorlNr: row.nachfolger})
-MATCH (vorgaenger:Vorlesung {VorlNr: row.vorgaenger})
-MERGE (nachfolger)-[:FOLGT_AUF]->(vorgaenger)
+MERGE (nachfolger)-[:SETZT_VORAUS]->(vorgaenger)
 
 // Professor prüft Vorlesung
 // Student erreicht Note in Vorlesung
