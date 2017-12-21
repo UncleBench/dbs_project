@@ -18,12 +18,7 @@ USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///vorlesungen.csv" AS row
 CREATE (:Vorlesung {VorlNr: row.vorlnr, Titel: row.titel, SWS: row.sws});
 
-// Prüfung erstellen
-USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "file:///pruefen.csv" AS row
-CREATE (:Pruefung {MatrNr: row.matrnr, VorlNr: row.vorlnr, PersNr: row.persnr, Note: row.note});
-
-// Indizes erstellen wo möglich
+// Indizes erstellen
 CREATE INDEX ON :Assistent(PersNr);
 CREATE INDEX ON :Professor(PersNr);
 CREATE INDEX ON :Student(MatrNr);
@@ -66,15 +61,12 @@ MATCH (nachfolger:Vorlesung {VorlNr: row.nachfolger})
 MATCH (vorgaenger:Vorlesung {VorlNr: row.vorgaenger})
 MERGE (nachfolger)-[:FOLGT_AUF]->(vorgaenger)
 
-// Pruefung wird_durchgefuehrt_von Professor
-// Pruefung wird_geschrieben_von Student
-// Pruefung thematisiert Vorlesung
+// Professor prüft Vorlesung
+// Student erreicht Note in Vorlesung
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///pruefen.csv" AS row
-MATCH (pruef:Pruefung {MatrNr: row.matrnr, VorlNr: row.vorlnr, PersNr: row.persnr, Note: row.note})
 MATCH (prof:Professor {PersNr: row.persnr})
 MATCH (stud:Student {MatrNr: row.matrnr})
 MATCH (vorl:Vorlesung {VorlNr: row.vorlnr})
-MERGE (prof)-[:PRUEFT]->(pruef)
-MERGE UNIQUE (stud)-[:SCHREIBT]->(pruef)
-MERGE UNIQUE (pruef)-[:THEMATISIERT]->(vorl)
+MERGE (prof)-[:PRUEFT]->(vorl)
+MERGE (stud)-[:ERREICHT_NOTE {Note: row.note}]->(vorl)
