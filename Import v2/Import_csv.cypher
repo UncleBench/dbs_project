@@ -21,7 +21,7 @@ CREATE (:Vorlesung {VorlNr: row.vorlnr, Titel: row.titel, SWS: row.sws});
 // Prüfung erstellen
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///pruefen.csv" AS row
-CREATE (:Pruefung {Note: row.note});
+CREATE (:Pruefung {MatrNr: row.matrnr, VorlNr: row.vorlnr, PersNr: row.persnr, Note: row.note});
 
 // Indizes erstellen
 CREATE INDEX ON :Assistent(PersNr);
@@ -30,7 +30,7 @@ CREATE INDEX ON :Student(MatrNr);
 CREATE INDEX ON :Vorlesung(VorlNr);
 // index auf prüfung... CREATE INDEX ON :Pruefung(???);
 
-schema await
+schema await;
 
 // Assistent assistiert Professor
 USING PERIODIC COMMIT
@@ -72,7 +72,7 @@ MERGE (nachfolger)-[:FOLGT_AUF]->(vorgaenger)
 // Pruefung thematisiert Vorlesung
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///pruefen.csv" AS row
-MATCH (pruef:Pruefung {Note: row.note})
+MATCH (pruef:Pruefung {MatrNr: row.matrnr, VorlNr: row.vorlnr, PersNr: row.persnr, Note: row.note})
 MATCH (prof:Professor {PersNr: row.persnr})
 MATCH (stud:Student {MatrNr: row.matrnr})
 MATCH (vorl:Vorlesung {VorlNr: row.vorlnr})
