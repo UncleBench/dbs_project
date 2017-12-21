@@ -80,7 +80,7 @@ MATCH(p:Professoren)-[:Liest]->(v:Vorlesungen) RETURN p.Name, v.Titel, v.KP
 
 Durch Authorisierung der einzelnen Benutzer wird Datensicherheit durch Verhinderung unerlaubter Zugriffe gewährleistet. Unter Neo4j bestehen deshalb die Benutzerrollen *reader, editor, publisher, architect* und *admin*. Benutzern auf der Datenbank werden diese Rollen vom Urheber der Datenbank zugeteilt. Die Benutzerrollen besitzen entsprechende Rechte:
 
-![Roles in Neo4j](./img/neo4j_roles.PNG)
+![Roles in Neo4j](./img/neo4j_roles.png)
 
 ### 5.2	Wie können Transaktionen parallel / konkurrierend verarbeitet werden?
 In Neo4j laufen alle Updates des Graphen in einer Transaktion ab. Dies kann auf zwei Arten geschehen. Falls noch keine Transaktion existiert, erstellt Cypher eine Neue und arbeitet den Query ab. Läuft jedoch schon eine Transaktion, wird der neue Query in der alten Transaktion mit abgearbeitet. Erst wenn alle Queries erfolgreich abgeschlossen wurden, werden die Änderung abgespeichert. Dies bedeutet, dass mehrere Queries in nur einer Transaktion auf einmal ausgeführt/abgespeichert werden können.
