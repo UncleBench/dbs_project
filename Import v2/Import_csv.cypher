@@ -23,12 +23,11 @@ USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///pruefen.csv" AS row
 CREATE (:Pruefung {MatrNr: row.matrnr, VorlNr: row.vorlnr, PersNr: row.persnr, Note: row.note});
 
-// Indizes erstellen
+// Indizes erstellen wo möglich
 CREATE INDEX ON :Assistent(PersNr);
 CREATE INDEX ON :Professor(PersNr);
 CREATE INDEX ON :Student(MatrNr);
 CREATE INDEX ON :Vorlesung(VorlNr);
-// index auf prüfung... CREATE INDEX ON :Pruefung(???);
 
 schema await;
 
@@ -77,5 +76,5 @@ MATCH (prof:Professor {PersNr: row.persnr})
 MATCH (stud:Student {MatrNr: row.matrnr})
 MATCH (vorl:Vorlesung {VorlNr: row.vorlnr})
 MERGE (prof)-[:PRUEFT]->(pruef)
-MERGE (stud)-[:SCHREIBT]->(pruef)
-MERGE (pruef)-[:THEMATISIERT]->(vorl)
+MERGE UNIQUE (stud)-[:SCHREIBT]->(pruef)
+MERGE UNIQUE (pruef)-[:THEMATISIERT]->(vorl)
